@@ -209,7 +209,8 @@ public class rpg {
                 + "Você vai trabalhar duro todos os dias,\n"
                 + "Mas a recompensa será doce, de muitas maneiras.\n \n"
                 + "Surge uma chuva de confete e então um Oompa Loompa o leva até a sala do RH para que você possa fornecer \n"
-                + "os documentos da sua admissão.";
+                + "os documentos da sua admissão.\n"
+                + "Parabéns pela contratação!!!";
         exibirTextoGradual(texto, 30);
         
         }
