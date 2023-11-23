@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package codigo;
+package rpg;
 
 import java.util.*;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Juliane Da Silva
  */
-public class Codigo {
+public class rpg {
 public static void exibirTextoGradual(String texto, int atraso) {
 	        for (int i = 0; i < texto.length(); i++) {
 	            System.out.print(texto.charAt(i));
@@ -26,6 +26,104 @@ public static void exibirTextoGradual(String texto, int atraso) {
 	            e.printStackTrace();
 	        }
         }
+            
+            public static void perguntas() {	
+        Scanner scanner = new Scanner(System.in);
+        int tentativasMaximas = 3; //Variável para definir o limite de tentativas que o jogador terá durante os dois desafios
+
+        // Desafio 1
+        int tentativas1 = 0;
+        boolean desafio1Concluido = false;
+        while (tentativas1 < tentativasMaximas && !desafio1Concluido) {
+            List<String> alternativas1 = new ArrayList<>();
+            alternativas1.add("Reduzir o número de horas de trabalho dos oompa loompas para aliviar o estresse e melhorar a qualidade de vida, de acordo com a teoria das relações humanas.");
+            alternativas1.add("Introduzir um sistema de competição entre os grupos de oompa loompas, onde o grupo mais produtivo recebe prêmios adicionais, incentivando a rivalidade entre eles.");
+            alternativas1.add("Implementar um sistema de recompensas com base no desempenho de cada oompa loompa, seguindo a administração científica"); // Alternativa correta
+            alternativas1.add("Implementar uma jornada de trabalho mais extensa para os oompa loompas, alegando que isso aumentará a produção ao longo do tempo, mesmo que contrarie a ideia de qualidade de vida.");
+            alternativas1.add("Contratar novos oompa loompas para aumentar a força de trabalho, sem considerar os desafios de integração e treinamento que isso pode acarretar.");
+
+            // Embaralhar as alternativas
+            Collections.shuffle(alternativas1);
+
+            exibirPerguntaEAlternativas("Willy Wonka pede sua opinião sobre como aumentar a produtividade na linha de produção.", alternativas1);
+
+            String resposta1 = obterResposta(scanner);
+            int posicaoCorreta1 = alternativas1.indexOf("Implementar um sistema de recompensas com base no desempenho de cada oompa loompa, seguindo a administração científica");
+            
+         // Caso o jogador acerte, ele poderá prosseguir para o próximo desafio
+            if (resposta1.equals(obterLetraCorrespondente(posicaoCorreta1))) {
+                System.out.println("Resposta correta! Vamos seguir para o próximo desafio!! \n");
+                desafio1Concluido = true;
+            } else {
+              	//Caso ele erre, poderá tentar novamente, tendo em vista que ele terá apenas 3 tentativas
+                System.out.println("Incorreto. Você tem " + (tentativasMaximas - tentativas1) + " tentativas restantes.\n");
+                tentativas1++;
+            }
+            //Caso o limiete de tentativas seja atingido, o jogo terminará
+            if (tentativas1 == tentativasMaximas) {
+                System.out.println("Infelizmente sua caminhada dourada terminou...\n");
+                return;
+            }
+        }
+
+        // Desafio 2
+        int tentativas2 = 0;
+        boolean desafio2Concluido = false;
+        while (tentativas2 < tentativasMaximas && !desafio2Concluido) {
+        	
+        	//Criação da primeira lista
+            List<String> alternativas2 = new ArrayList<>();
+            
+          //adicionando as alternativas na lista
+            alternativas2.add("Implementaria reuniões regulares para resolver conflitos e incentivar a comunicação entre os oompa loompas, de acordo com a teoria das relações humanas."); // Alternativa correta
+            alternativas2.add("Ignoraria o problema, acreditando que a produção é a prioridade, conforme a administração científica.");
+            alternativas2.add("Implementar um programa de recompensas individual baseado no desempenho, visando motivar cada oompa loompa por meio de incentivos financeiros.");
+            alternativas2.add("Aumentar a carga de trabalho dos oompa loompas durante as pausas, alegando que a produtividade aumentará se eles continuarem trabalhando durante esses momentos.");
+            alternativas2.add("Contratar um consultor externo para impor soluções e melhorias sem envolver diretamente os oompa loompas, seguindo uma abordagem autocrática.");
+
+            // Embaralhar as alternativas
+            Collections.shuffle(alternativas2);
+
+            exibirPerguntaEAlternativas("Durante uma pausa, alguns oompa loompas começam a discutir e parecem desmotivados. O que você faria para melhorar a situação?", alternativas2);
+
+            String resposta2 = obterResposta(scanner);
+            
+            int posicaoCorreta2 = alternativas2.indexOf("Implementaria reuniões regulares para resolver conflitos e incentivar a comunicação entre os oompa loompas, de acordo com a teoria das relações humanas.");
+
+            // Caso o jogador acerte, ele poderá prosseguir para o próximo desafio
+            if (resposta2.equals(obterLetraCorrespondente(posicaoCorreta2))) {
+                System.out.println("Resposta correta! Parabéns, você concluiu o desafio dourado e poderá seguir para a próxima etapa do processo.\n");
+                desafio2Concluido = true;
+            } else {
+              	//Caso ele erre, poderá tentar novamente, tendo em vista que ele terá apenas 3 tentativas
+                System.out.println("Incorreto! Você tem " + (tentativasMaximas - tentativas2) + " tentativas restantes.\n");
+                tentativas2++;
+            }
+            //Caso o limiete de tentativas seja atingido, o jogo terminará
+            if (tentativas2 == tentativasMaximas) {
+                System.out.println("Infelizmente sua caminhada dourada terminou...\n");
+            }
+        }
+    }
+            // Função para apresentar as perguntas e alternativas ao jogador
+    public static void exibirPerguntaEAlternativas(String pergunta, List<String> alternativas) {
+        System.out.println("\n" + pergunta + "\n");
+        char opcao = 'A';
+        for (String alternativa : alternativas) {
+            System.out.println(opcao + ") " + alternativa);
+            opcao++;
+        }
+    }
+    // Função para solicitar a entrada do usuário
+    public static String obterResposta(Scanner scanner) {
+        System.out.print("Escolha sua resposta: ");
+        return scanner.nextLine().trim().toUpperCase();
+    }
+    // Função para fazer com que a alternativa escolhida seja lincada com a alternativa correta
+    public static String obterLetraCorrespondente(int posicao) {
+        return String.valueOf((char) ('A' + posicao));
+    
+}
     public static void main(String[] args) {
         Scanner input = new Scanner (System.in);
 		
@@ -45,7 +143,7 @@ public static void exibirTextoGradual(String texto, int atraso) {
 			switch(opcao) {
 			
 			case 1:
-				System.out.println("\n** INSTRUÇÕES **\n\n1 – Para iniciar o jogo o jogador deve escolher a opção 3 no menu. Assim poderá iniciar sua jornada no processo seletivo para trabalhar na fábrica do Sr Wonka.\n"
+				System.out.println("\n** INSTRUÇÕES **\n1 – Para iniciar o jogo o jogador deve escolher a opção 3 no menu. Assim poderá iniciar sua jornada no processo seletivo para trabalhar na fábrica do Sr Wonka.\n"
                                         + "2 – Ao longo da jornada o jogador precisará solucionar diversos desafios (perguntas selecionadas) para continuar no processo\n"
                                         + "3 – Em cada desafio o jogador terá até três chances para responder corretamente as perguntas. Boa sorte!\n");
 				break;
@@ -54,21 +152,25 @@ public static void exibirTextoGradual(String texto, int atraso) {
 				break;
 			case 3:
 				
-				String texto = "\nLadies and gentlemen,\nInfelizmente, problemas internos aconteceram em nossa fábrica. \nPortanto, teremos que contratar mais um Oompa Loompa para compor o nosso time que irá atuar \nno nosso salão de chocolate, onde você encontrará deliciosos chocolates e guloseimas.\n"
-						+ "Devido a isso, estamos à procura de indivíduos talentosos e apaixonados para se juntarem \nà nossa equipe e ajudar a tornar o mundo mais doce um chocolate de cada vez.";				
-                exibirTextoGradual(texto, 30);
-
-				System.out.println("\nDigite seu nome, por gentileza: ");
+				String texto = "\nLadies and gentlemen,\nInfelizmente, problemas internos aconteceram em nossa fábrica."
+                                        + "\nPortanto, teremos que contratar mais um Oompa Loompa para compor o nosso time que irá atuar"
+                                        + "\nno nosso salão de chocolate, onde você encontrará deliciosos chocolates e guloseimas.\n"
+                                        + "Devido a isso, estamos à procura de indivíduos talentosos e apaixonados para se juntarem \n"
+                                        + "à nossa equipe e ajudar a tornar o mundo mais doce um chocolate de cada vez.";				
+				exibirTextoGradual(texto, 30);
+				texto="\nDigite seu nome, por gentileza: ";
+                                exibirTextoGradual(texto, 30);
 				nom = input.next();
 				nom = nom.toUpperCase();
 				
-				System.out.println("SEJA BEM-VINDO(A) À CAMINHADA DOURADA, " + nom);
+				System.out.println("SEJA BEM-VINDO À CAMINHADA DOURADA, " + nom + "!🤎🍫🍬\n");
 				
-                String texto1 = nom + ", O senhor Willy Wonka sempre foi bastante criterioso com os funcionários de sua fábrica. \nManter a ordem, organização e, acima de tudo, a transparência do serviço sempre foi o objetivo máximo da sua gerência.\n"
-                		+ "Entretanto, por mais que o Willy Wonka prese por tais valores, um de seus Oompa Loompa foi pego tendo um desvio de caráter,\no que entristeceu muito o senhor Wonka. Após muito pensar, o Wily Wonka seguiu o pensamento de que “depois de quebrada,\na confiança nunca mais é a mesma”, portanto, com muita tristeza, decide demitir o Oompa Loompa,\no que fez surgir uma nova oportunidade de trabalho na mais famosa fábrica de chocolates do mundo.\n"
-                		+ "O processo seletivo da fábrica sempre foi rigoroso, testes onde são cobrados conhecimentos sobre o meio administrativos\nsão aplicados para que assim os melhores funcionários possam ser selecionados.\n"
-                		+ "Ao estar caminhando nas redondezas da fábrica, você se depara com o anúncio da vaga vigente,\nse interessa e se candidata. Logo você é chamado para participar do processo seletivo, onde a primeira fase se dá pela realização de um desafio para testar suas habilidades nos conceitos da administração. Você logo se sente ansioso com a situação,\npois é uma grande oportunidade de atuar na fábrica mais importante de todos os tempos, mesmo assim você entra no campo de chocolate e inicia o teste:\n";
-                exibirTextoGradual(texto1, 30);
+                texto = nom + ", O senhor Willy Wonka sempre foi bastante criterioso com os funcionários de sua fábrica. \nManter a ordem, organização e, acima de tudo, a transparência do serviço sempre foi o objetivo máximo da sua gerência.\n"
+                        + "Entretanto, por mais que o Willy Wonka prese por tais valores, um de seus Oompa Loompa foi pego tendo um desvio de caráter,\no que entristeceu muito o senhor Wonka. Após muito pensar, o Wily Wonka seguiu o pensamento de que “depois de quebrada,\na confiança nunca mais é a mesma”, portanto, com muita tristeza, decide demitir o Oompa Loompa,\n"
+                        + "o que fez surgir uma nova oportunidade de trabalho na mais famosa fábrica de chocolates do mundo.\n"
+                        + "O processo seletivo da fábrica sempre foi rigoroso, testes onde são cobrados conhecimentos sobre o meio administrativos\nsão aplicados para que assim os melhores funcionários possam ser selecionados."
+                        + "Ao estar caminhando nas redondezas da fábrica, você se depara com o anúncio da vaga vigente,\nse interessa e se candidata. Logo você é chamado para participar do processo seletivo, onde a primeira fase se dá pela realização de um desafio para testar suas habilidades nos conceitos da administração. Você logo se sente ansioso com a situação,\npois é uma grande oportunidade de atuar na fábrica mais importante de todos os tempos, mesmo assim você entra no campo de chocolate e inicia o teste:\n";
+                exibirTextoGradual(texto, 30);
 
 
 				ArrayList <String> listaAlt1 = new ArrayList <>();
@@ -127,7 +229,8 @@ public static void exibirTextoGradual(String texto, int atraso) {
 			} while (tent <= 3 && escolha1 != 'b');
 			
 				
-				System.out.println("Preparado(a) para o próximo desafio? Sinta-se preparado(a),\npois a nossa fábrica precisa de você e esse desafio não pode te vencer. Vamos lá!!!\n");
+				texto="Preparado(a) para o próximo desafio? Sinta-se preparado(a),\npois a nossa fábrica precisa de você e esse desafio não pode te vencer. Vamos lá!!!\n";
+                                exibirTextoGradual(texto, 30);
 				
 				
 				do {
@@ -164,13 +267,28 @@ public static void exibirTextoGradual(String texto, int atraso) {
 
 					}
 			}  while (tent <= 3 && escolha2 != 'b');
+                                //Fim código Ully
+                                //Início código Duda
+                                texto = "Ao finalizar o desafio da etapa anterior do processo, você e todos os candidatos são contemplados com alguns doces deliciosos para adoçarem sua jornada na Fantástica Fábrica! "
+    			+ "\nApós a degustação, vocês são conduzidos a uma nova sala onde são apresentados ao coração da fábrica de chocolates mais famosa do mundo."
+    			+ "\nNeste local, vocês encontram alguns dos muitos oompa loompas que desempenham papéis estratégicos em cada etapa da produção ao longo da gigantesca linha de fabricação."
+    			+ "\nAo observar esses trabalhadores, percebe que, no momento de pausa que tiveram, eles se dividiram em grupos.\n"
+    			+ "\nAlguns estavam animados e felizes com a visita, enquanto outros pareciam desanimados e apenas observavam."
+    			+ "\nWilly Wonka, o excêntrico dono da fábrica, surge e anuncia:\n"
+    			+ "\n\"Senhoras e senhores, estamos em uma nova etapa do processo!\n"
+    			+ "\nPara ter sucesso aqui, é fundamental compreender a dinâmica de nossa fábrica e, baseando-se nas teorias das relações humanas,"
+    			+ "\ntrazer à tona o que considera essencial para manter a Fantástica Fábrica de Chocolate como um lugar harmonioso e agradável para todos que aqui trabalham e um dos melhores locais para se trabalhar.\"\n"
+    			+ "\nAgora, cabe a você fazer uma análise do que viu ao entrar na sala e do que já testemunhou nos desafios anteriores.\n";
+    	exibirTextoGradual(texto, 30);
+
+        perguntas();
 //Inicio código Juliane
         int correta1, correta2;
         do {
         //Inicialização variáveis de verificação de acerto e de tentativas
         correta1 = 0;
         correta2 = 0;
-        int tentativas = 5;
+        int tentativas = 3;
         /*Introdução/ambientação do quarto desafio*/
         texto = "Para o próximo desafio o Oompa Loompa o leva até uma pequena sala, onde tudo o que \n"
                 + "consegue visualizar é a porta por onde veio que está atrás de você e uma porta a sua frente que é semelhante \n"
@@ -263,7 +381,7 @@ public static void exibirTextoGradual(String texto, int atraso) {
         } while (correta1 != 1 && tentativas != 0);
 //História
         if (tentativas>0){
-        texto1 = "\nAssim que você acerta a questão o Oompa Loompa prontamente o puxa pela \n"
+        String texto1 = "\nAssim que você acerta a questão o Oompa Loompa prontamente o puxa pela \n"
                 + "barra da calça guiando-o pelos corredores de chocolate que derretiam cada vez mais rápido.\n"
                 + "O Oompa Loompa para na frente de uma TV e o encara por alguns segundos antes de sair correndo \n"
                 + "e rindo baixinho. Ao lado da TV há uma mesa com um controle cuidadosamente posicionado acima de um \n"
