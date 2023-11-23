@@ -3,9 +3,10 @@ import java.util.Scanner;
 
 public class fase3 {
 
-	private static final int MAX_TENTATIVAS = 3;
+	private static final int MAX_TENTATIVAS = 3; // Ultilizado para definir quantas chances o jogador vai ter em cada pergunta.
 
 	 public static void main(String[] args) {
+		//Introdução da fase 3
 	        String texto = "Parabéns por realizar mais uma etapa!\n" +
 	                  "Por seu grande esforço e pensamento rápido, você e os demais finalistas se encontram na área dos Sinos de Nozes.\n" +
 	                  "Nessa área, você está no setor administrativo e o RH da empresa.\n" +
@@ -25,11 +26,12 @@ public class fase3 {
 	                  "Sendo assim, ter a capacidade de lidar com os conflitos e continuar mantendo ela Fantástica.\"\n\n" +
 	                  "Para continuar trilhando o seu caminho nessa jornada açucarada, você precisará utilizar os seus conhecimentos sobre Os Mecanismos de Defesa \n"
 	                  + "e a Teoria da Administração Clássica responder corretamente às questões. Boa sorte!\n\n";
-	        exibirTextoGradual(texto, 30); // 30 milissegundos de atraso entre caracteres
+	        exibirTextoGradual(texto, 30); // 30 milissegundos de atraso entre caracteres, para ter um atraso na hora que o jogo estiver rodando.
 
 	        if (realizarPergunta1()) {
 	            if (realizarPergunta2()) {
 	                System.out.println("Parabéns Doce Aventureiro! Você agora irá avançar para a fase final!");
+					//Se o jogador acertar as duas perguntas, ele já passa de fase e não usa a 3 chances em caso de erro.
 	            }
 	        }
 	    }
@@ -51,7 +53,7 @@ public class fase3 {
 	                case 'B':
 	                case 'b':	
 	                    System.out.println("Resposta correta!\n");
-	                    return true; // 
+	                    return true; // o jogador acertou. 
 	                default:
 	                    System.out.println("\nSua resposta está incorreta, você tem: " + (MAX_TENTATIVAS - tentativas - 1 + " tentativas!\n"));
 	            }
@@ -59,7 +61,7 @@ public class fase3 {
 
 	        System.out.println("Infelizmente você não vai poder continuar na nossa Caminhada Dourada. Se desejar pode se inscrever \n"
 	        		+ "novamente!.");
-	        return false; // jogador falhou.
+	        return false; // se o jogador errar e usar todas as três chances então ele precisa reiniciar o jogo e tentar novamente.
 	    }
 
 	    public static boolean realizarPergunta2() {
@@ -84,7 +86,7 @@ public class fase3 {
 	                case 'C':
 	                case 'c':	
 	                    System.out.println("Resposta correta!");
-	                    return true; 
+	                    return true; // o jogador acertou a pergunta.
 	                default:
 	                    System.out.println("Sua resposta está incorreta, você tem: " + (MAX_TENTATIVAS - tentativas - 1 + " tentativas!\n"));
 	            }
@@ -92,17 +94,17 @@ public class fase3 {
 
 	        System.out.println("\"Infelizmente você não vai poder continuar na nossa Caminhada Dourada. Se desejar pode se inscrever\n"
 	        		+ "novamente!.");
-	        return false; //jogador falhou.
+	        return false; //se o jogador errar e usar todas as três chances então ele precisa reiniciar o jogo e tentar novamente.
 	    }
 
-	    public static void exibirTextoGradual(String texto, int atraso) {
+	    public static void exibirTextoGradual(String texto, int atraso) { //ultilizado para o atraso do texto.
 	        for (int i = 0; i < texto.length(); i++) {
 	            System.out.print(texto.charAt(i));
 	            aguardarAtraso(atraso);
 	        }
 	    }
 
-	    public static void aguardarAtraso(int milissegundos) {
+	    public static void aguardarAtraso(int milissegundos) { //ultilizado para o atraso do texto.
 	        try {
 	            Thread.sleep(milissegundos);
 	        } catch (InterruptedException e) {
@@ -110,6 +112,3 @@ public class fase3 {
 	        }
 	    }
 	}
-
-	
-
